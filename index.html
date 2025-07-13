@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕸️ RetroWeb Builder - GeoCities 2.0 🕸️</title>
+    <link rel="stylesheet" href="retro.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <h1>🕸️ RetroWeb Builder - GeoCities 2.0 🕸️</h1>
+        <p class="blink">✨ Build your own retro fan page like it's 1999! ✨</p>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar with draggable elements -->
+        <div class="sidebar">
+            <h2>🎨 Drag & Drop Elements</h2>
+            
+            <div class="element-category">
+                <h3>📝 Text Elements</h3>
+                <div class="draggable-element" data-type="text">
+                    <span>📝 Text Box</span>
+                </div>
+                <div class="draggable-element" data-type="heading">
+                    <span>🎯 Heading</span>
+                </div>
+                <div class="draggable-element" data-type="marquee">
+                    <span>🎪 Marquee Text</span>
+                </div>
+            </div>
+
+            <div class="element-category">
+                <h3>🖼️ Images & GIFs</h3>
+                <div class="draggable-element" data-type="gif" data-src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif">
+                    <span>🔥 Fire GIF</span>
+                </div>
+                <div class="draggable-element" data-type="gif" data-src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif">
+                    <span>💫 Stars GIF</span>
+                </div>
+                <div class="draggable-element" data-type="gif" data-src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif">
+                    <span>🌈 Rainbow GIF</span>
+                </div>
+                <div class="draggable-element" data-type="construction">
+                    <span>🚧 Under Construction</span>
+                </div>
+            </div>
+
+            <div class="element-category">
+                <h3>🎵 Interactive</h3>
+                <div class="draggable-element" data-type="guestbook">
+                    <span>📖 Guestbook</span>
+                </div>
+                <div class="draggable-element" data-type="counter">
+                    <span>🔢 Visitor Counter</span>
+                </div>
+                <div class="draggable-element" data-type="music">
+                    <span>🎵 Background Music</span>
+                </div>
+            </div><div class="customize-panel">
+  <h3>🎨 Style Selected</h3>
+  <label>Font:
+    <select onchange="changeFont(this.value)">
+      <option value="Comic Sans MS">Comic Sans</option>
+      <option value="Courier New">Courier</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Arial">Arial</option>
+      <option value="Comic Neue">Comic Neue</option>
+    <option value="Pacifico">Pacifico</option>
+    <option value="Press Start 2P">Press Start 2P</option>
+    <option value="Indie Flower">Indie Flower</option>
+    <option value="VT323">VT323</option>
+    </select>
+  </label><br><br>
+  <label>Color:
+    <input type="color" onchange="changeColor(this.value)">
+  </label><br><br>
+
+  <h3>🖼️ Upload Image</h3>
+  <input type="file" accept="image/*" onchange="uploadImage(event)">
+</div><button onclick="searchGiphy(document.getElementById('giphyQuery').value)">🔍 GIF</button>
+<input type="text" id="giphyQuery" placeholder="Search GIFs">
+
+            <div class="theme-selector">
+                <h3>🎨 Themes</h3>
+                <button onclick="changeTheme('neon')" class="theme-btn">🌈 Neon</button>
+                <button onclick="changeTheme('classic')" class="theme-btn">🏛️ Classic</button>
+                <button onclick="changeTheme('dark')" class="theme-btn">🌙 Dark</button>
+            </div>
+
+            <div class="export-section">
+                <button onclick="exportSite()" class="export-btn">
+                    💾 Export My Retro Site!
+                </button>
+                <button onclick="previewSite()" class="preview-btn">
+                    👀 Preview Site
+                </button>
+                 <button onclick="exportScreenshot()">📸 Export Screenshot</button>
+            </div>
+        </div>
+
+        <!-- Canvas area -->
+        <div class="canvas-container">
+            <div class="canvas-header">
+                <h3>🎨 Your Retro Website Canvas</h3>
+                <button onclick="clearCanvas()" class="clear-btn">🗑️ Clear All</button>
+            </div>
+            <div id="canvas" class="canvas">
+                <div class="welcome-message">
+                    <h2>Welcome to your retro website!</h2>
+                    <p>Drag elements from the sidebar to start building! 🚀</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="ai-assistant">
+    <h3>🤖 AI Assistant</h3>
+    <input type="text" id="aiPrompt" placeholder="e.g., Add rainbow gif and marquee" />
+    <button onclick="handleAIPrompt()">✨ Generate</button>
+    <p id="aiResponse" class="ai-response blink"></p>
+</div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePreview()">&times;</span>
+            <h2>🔍 Preview Your Retro Site</h2>
+            <iframe id="previewFrame" src="about:blank"></iframe>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
